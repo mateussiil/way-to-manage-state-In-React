@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux basic example</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <p>
+        Clicked: <span id="value">0</span> times
+        <button id="increment">+</button>
+        <button id="decrement">-</button>
+        <button id="incrementIfOdd">Increment if odd</button>
+        <button id="incrementAsync">Increment async</button>
+      </p>
+    </div>
+    <script src="hook/state.js"></script>
+    <script src="hook/reducers.js"></script>
+    <script src="hook/actions.js"></script>
+    <script src="hook/store.js"></script>
+    <script>
+      // Our "user interface" is some text in a single HTML element
+      const valueEl = document.getElementById("value");
+
+      // Whenever the store state changes, update the UI by
+      // reading the latest store state and showing new data
+      function render() {
+        const state = store.getState();
+        valueEl.innerHTML = state.value.toString();
+      }
+
+      // Update the UI with the initial data
+      render();
+      // And subscribe to redraw whenever the data changes in the future
+      store.subscribe(render);
+    </script>
+  </body>
+</html>
